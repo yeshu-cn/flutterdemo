@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/common_ui_builder.dart';
 import 'package:flutterdemo/sliver_header_delegate.dart';
 
 class PersistentHeaderRoute extends StatelessWidget {
@@ -32,18 +33,7 @@ class PersistentHeaderRoute extends StatelessWidget {
     );
   }
 
-  // 构建固定高度的SliverList，count为列表项属相
-  Widget buildSliverList([int count = 5]) {
-    return SliverFixedExtentList(
-      itemExtent: 50,
-      delegate: SliverChildBuilderDelegate(
-            (context, index) {
-          return ListTile(title: Text('$index'));
-        },
-        childCount: count,
-      ),
-    );
-  }
+
 
   // 构建 header
   Widget buildHeader(int i) {
