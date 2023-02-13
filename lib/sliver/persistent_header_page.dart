@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/common_ui_builder.dart';
-import 'package:flutterdemo/sliver_header_delegate.dart';
+import 'package:flutterdemo/sliver/common_ui_builder.dart';
+import 'package:flutterdemo/sliver/sliver_header_delegate.dart';
 
-class PersistentHeaderRoute extends StatelessWidget {
-  const PersistentHeaderRoute({Key? key}) : super(key: key);
+class PersistentHeaderPage extends StatelessWidget {
+  const PersistentHeaderPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: CustomScrollView(
+    return Scaffold(
+      appBar: AppBar(title: const Text('persistent header'),),
+      body: CustomScrollView(
         slivers: [
           buildSliverList(),
           SliverPersistentHeader(

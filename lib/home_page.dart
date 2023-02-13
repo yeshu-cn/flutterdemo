@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/sliver_header_delegate.dart';
+import 'package:flutterdemo/nested/nested_scroll_page.dart';
+import 'package:flutterdemo/nested/nested_tab_page.dart';
+import 'package:flutterdemo/nested/snap_appbar_page.dart';
+import 'package:flutterdemo/sliver/flexible_header_page.dart';
+import 'package:flutterdemo/sliver/persistent_header_page.dart';
+import 'package:flutterdemo/sliver/persistent_header_to_box_page.dart';
+import 'package:flutterdemo/sliver/sliver_demo_page.dart';
+import 'package:flutterdemo/sliver/sliver_persistent_header_to_box.dart';
+import 'package:flutterdemo/widget/keys/swap_color_1.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,106 +19,73 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var listView = SliverFixedExtentList(
-      itemExtent: 56, //列表项高度固定
-      delegate: SliverChildBuilderDelegate(
-        (_, index) => ListTile(title: Text('$index')),
-        childCount: 10,
-      ),
-    );
-
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          // AppBar，包含一个导航栏.
-          SliverAppBar(
-            pinned: true, // 滑动到顶端时会固定住
-            expandedHeight: 250.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: const Text('Demo'),
-              background: Image.asset(
-                "assets/images/header.jpg",
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 150,
-              child: PageView(
-                children: [
-                  Container(
-                    child: const Center(child: Text("Page 1")),
-                    color: Colors.green,
-                  ),
-                  Container(
-                    child: const Center(child: Text("Page 2")),
-                    color: Colors.blue,
-                  )
-                ],
-              ),
-            ),
-          ),
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: SliverHeaderDelegate.fixedHeight(
-              //固定高度
-              height: 50,
-              child: Container(
-                child: const SizedBox(
-                  height: 100,
-                  child: Center(child: Text('persistent header')),
-                ),
-                color: Colors.amberAccent,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 100.0,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const SizedBox(
-                    width: 100.0,
-                    child: Card(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('data'),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(8.0),
-            sliver: SliverGrid(
-              //Grid
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, //Grid按两列显示
-                mainAxisSpacing: 10.0,
-                crossAxisSpacing: 10.0,
-                childAspectRatio: 4.0,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  //创建子widget
-                  return Container(
-                    alignment: Alignment.center,
-                    color: Colors.cyan[100 * (index % 9)],
-                    child: Text('grid item $index'),
-                  );
-                },
-                childCount: 20,
-              ),
-            ),
-          ),
-          listView,
-        ],
-      ),
+    return ListView(
+      children: [
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SwapColorDemo1(),
+            ));
+          },
+          title: const Text('SwapColorDemo1'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const FlexibleHeaderPage(),
+            ));
+          },
+          title: const Text('slivers'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const PersistentHeaderPage(),
+            ));
+          },
+          title: const Text('persistent header page'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const CustomSliverPage(),
+            ));
+          },
+          title: const Text('custom sliver: flexible header'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const PersistentHeaderToBoxPage(),
+            ));
+          },
+          title: const Text('custom sliver: persistent header'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const NestedScrollPage(),
+            ));
+          },
+          title: const Text('nested scroll'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SnapAppBarPage(),
+            ));
+          },
+          title: const Text('snap app bar'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const NestedTabPage(),
+            ));
+          },
+          title: const Text('nested tab page'),
+        ),
+      ],
     );
   }
 }
