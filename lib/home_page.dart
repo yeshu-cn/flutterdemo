@@ -7,6 +7,7 @@ import 'package:flutterdemo/sliver/persistent_header_page.dart';
 import 'package:flutterdemo/sliver/persistent_header_to_box_page.dart';
 import 'package:flutterdemo/sliver/sliver_demo_page.dart';
 import 'package:flutterdemo/sliver/sliver_persistent_header_to_box.dart';
+import 'package:flutterdemo/sliver/sticky_header_page.dart';
 import 'package:flutterdemo/widget/keys/swap_color_1.dart';
 
 class HomePage extends StatefulWidget {
@@ -84,6 +85,14 @@ class _HomePageState extends State<HomePage> {
             ));
           },
           title: const Text('nested tab page'),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const StickyHeaderPage(),
+            ));
+          },
+          title: const Text('list with stick header'),
         ),
       ],
     );

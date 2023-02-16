@@ -13,8 +13,9 @@ class PersistentHeaderToBoxPage extends StatefulWidget {
 class _PersistentHeaderToBoxPageState extends State<PersistentHeaderToBoxPage> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: CustomScrollView(
+    return Scaffold(
+      appBar: AppBar(),
+      body: CustomScrollView(
         slivers: [
           buildSliverList(5),
           SliverPersistentHeaderToBox.builder(builder: headerBuilder),
