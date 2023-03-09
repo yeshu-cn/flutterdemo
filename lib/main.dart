@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/home_page.dart';
+import 'package:flutterdemo/demo_list_page.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -13,12 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Demo list'),
-        ),
-        body: const HomePage(),
-      ), //Stateless
+      home: const DemoList(), //Stateless
     );
   }
 }
